@@ -68,6 +68,8 @@ class CopyrightChecker(object):
         if len(top_of_file) < self.copyright_min_file_size:
             return
 
+        top_of_file = open(self.filename).read()
+
         author = self.copyright_author if self.copyright_author else r".*"
         re_copyright = re.compile(self.copyright_regexp % {'author': author}, re.IGNORECASE)
         if not re_copyright.search(top_of_file):
